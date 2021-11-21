@@ -21,6 +21,8 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.displayBasic = true;
+    localStorage.clear();
+    localStorage.setItem("isLogin", "false");
   }
 
   onLogin() {
@@ -56,10 +58,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   redirectHomePage() {
-    this.islogin = true;
-    this.global.setIsLogin(true);
-    this.router.navigateByUrl('/Home');
-    // localStorage.setItem("isLogin", "true");
+    localStorage.setItem("isLogin", "true");
+    // this.router.navigateByUrl('/Home');
+    window.location.href="/Home";
   }
 
 

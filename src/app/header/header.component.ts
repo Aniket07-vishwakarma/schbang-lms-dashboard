@@ -7,16 +7,27 @@ import { GlobalService } from '../global';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  loginSatatus: boolean=false;
+  isLogin: boolean = false;
   constructor(public globalService: GlobalService) { }
 
   ngOnInit(): void {    
-    // if(localStorage.getItem("userName")) {
-    //   this.loginSatatus = true
-    // } else {
-    //   this.loginSatatus = false
-    // }
-    // alert("isLogin " + this.globalService.isLogin);
+    if ((localStorage.getItem("isLogin")) == "true") {
+      this.isLogin = true;
+      console.log(this.isLogin);
+    } else {
+      this.isLogin = false;
+      console.log(this.isLogin);
+    }
+  }
+
+  clickOnLogOut() {
+    localStorage.setItem("isLogin", "false");
+    window.location.href = "/";
+  }
+
+  clickOnLogIn() {
+    localStorage.setItem("isLogin", "true");
+    window.location.href = "/";
   }
 
 }

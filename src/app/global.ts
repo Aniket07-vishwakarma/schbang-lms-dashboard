@@ -4,15 +4,12 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class GlobalService {
-    isLogin: boolean = false;
+    public isLogin: boolean = false;
     basePath: any = "http://localhost:9000";
-    constructor() {}
+    constructor() { }
 
-    setIsLogin(val: boolean){
-        this.isLogin = val;        
-    }
-
-    getIsLogin() {
-        return this.isLogin
+    setIsLogin() {
+        this.isLogin = true;
+        return this.isLogin;
     }
 }

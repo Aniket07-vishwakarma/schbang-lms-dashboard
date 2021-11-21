@@ -1,21 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../global';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  styleUrls: ['./home-page.component.css'],
+  providers: [MessageService]
 })
 export class HomePageComponent implements OnInit {
+  isReloaded: boolean = false;
   fruitObj: any;
   fruitIndex: any;
   cartProducts: any = [];
   userPastCartData: any;
   isFirstDataAdded: boolean = false;
-  constructor(private global: GlobalService, private http: HttpClient) { }
+  constructor(private global: GlobalService, private http: HttpClient, private router: Router, private messageService: MessageService) { }
 
   ngOnInit(): void {
+    // console.log("isLogin.......home........." + this.global.isLogin);
     this.fruitObj = [
       {
         "details": "Fresho Apple - 4 pcs (Approx. 500g- 650g)",
@@ -74,6 +80,10 @@ export class HomePageComponent implements OnInit {
   }
 
   addToCartFunc(event: any) {
+    if ((localStorage.getItem("isLogin")) != "true") {
+      this.messageService.add({ severity: 'warn', summary: 'Login incompleted', detail: 'Please login first.' });      
+    }
+
     let indexOfFruit = event.target.name;
     // this.cartProducts.push(this.fruitObj[indexOfFruit]);
     this.cartProducts = [

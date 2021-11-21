@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../global';
 import { HttpClient } from '@angular/common/http';
 import {MessageService} from 'primeng/api';
+import { Router } from '@angular/router';
 // import { HomePageComponent } from '../home-page/home-page.component';
 
 
@@ -21,9 +22,13 @@ export class MyCartPageComponent implements OnInit {
   totalNumberOfProducts: any;
   displayCheckoutForm: boolean = false;
   isOrderCompleted: boolean = false;
-  constructor(public global: GlobalService, private http: HttpClient, private messageService: MessageService) { }
+  constructor(public global: GlobalService, private http: HttpClient, private messageService: MessageService, private router: Router) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {  
+    // if(localStorage.getItem("isLogin") != "true") {
+    //   // this.global.setIsLogin();
+    //   this.router.navigateByUrl('');
+    // }
     this.myCartData();
   }
 

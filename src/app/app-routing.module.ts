@@ -8,7 +8,7 @@ import { MyCartPageComponent } from './my-cart-page/my-cart-page.component';
 const routes: Routes = [
   {path: "", component: LoginPageComponent},
   {path: "Home", component: HomePageComponent},
-  {path: "checkout", component: CheckoutPageComponent},
+  // {path: "checkout", component: CheckoutPageComponent},
   {path: "my-cart", component: MyCartPageComponent},
 ];
 

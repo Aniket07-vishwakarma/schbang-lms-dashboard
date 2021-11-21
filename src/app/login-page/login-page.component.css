@@ -21,3 +21,13 @@ p {
 .shadow {
     box-shadow: 2px 2px 2px black;
 }
+
+.btn {
+    padding: 0px 0px 0px 0px; 
+    border: 0.2px solid black; 
+    border-radius: 5px;
+    opacity: 1;
+    transition: 0.3s;
+  }
+  
+  .Btn:hover {opacity: 0.6}
