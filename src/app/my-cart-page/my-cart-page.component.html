@@ -1,0 +1,54 @@
+<p-toast></p-toast>
+
+<div style="text-align: center;" *ngIf="isOrderCompleted" class="mt-4">
+    <button class="btn" (click)="checkoutNow()">Checkout</button>
+</div>
+
+<p-dialog header="Checkout" [(visible)]="displayCheckoutForm" [modal]="true" [style]="{width: '25vw'}" class="shadow">
+    <p style="font-size: 13px;">Please fills the details and complete your order.</p>
+    <h6>Total cost: ₹{{this.totalCost}}</h6>
+    <div>
+      <span class="p-float-label mb-4 mt-4">
+        <input id="float-input" type="number" pInputText [(ngModel)]="mobileNumber" [style]="{width: '22.5vw'}">
+        <label for="float-input">Mobile number</label>
+      </span>
+      <span class="p-float-label mb-4">
+        <input id="float-input" type="text" pInputText [(ngModel)]="shippingAdd" [style]="{width: '22.5vw'}">
+        <label for="float-input">Shipping Address</label>
+      </span>
+      <span class="p-float-label mb-4">
+        <input id="float-input" type="number" pInputText [(ngModel)]="pincode" [style]="{width: '22.5vw'}">
+        <label for="password">Pincode</label>
+      </span>
+    </div>
+  
+    <ng-template pTemplate="footer">          
+      <p-button icon="pi pi-check" label="Submit" styleClass="p-button-text" (click)="submitOrder()"></p-button>
+      <p-button icon="pi pi-check" (click)="displayCheckoutForm=false" label="Cancel" styleClass="p-button-text" (click)="submitOrder"></p-button>
+    </ng-template>
+  </p-dialog>
+
+<div class="container" style="margin-top: 40px;" *ngIf="isOrderCompleted">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col" *ngFor="let item of myCartFruits; index as i;">
+            <div class="card shadow-sm">
+                <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{item.imgUrl}}">
+
+                <div class="card-body">
+                    <p class="card-text">{{item.details}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="text-muted">Price: Rs {{item.price}}</h6>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="fruit-details"
+                                name="{{item._id}}" (click)="removeDataFunc($event)">Remove from cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!isOrderCompleted">
+    <h4 style="text-align: center; color: dimgray;"><br>Please add fruits in cart.</h4>
+</div>

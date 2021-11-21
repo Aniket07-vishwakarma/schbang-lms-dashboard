@@ -1,0 +1,24 @@
+<p-toast></p-toast>
+
+<!-- <p-button (click)="showBasicDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
+<p-dialog header="Login" [(visible)]="displayBasic" [modal]="true" [style]="{width: '25vw'}" class="shadow">
+  <div>
+    <span class="p-float-label mb-4 mt-2">
+      <input id="float-userbane" type="text" pInputText [(ngModel)]="userName" [style]="{width: '22.5vw'}">
+      <label for="float-input">Name</label>
+    </span>
+    <span class="p-float-label mb-4">
+      <input id="float-emai" type="text" pInputText [(ngModel)]="emailAdd" [style]="{width: '22.5vw'}">
+      <label for="float-input">Email Id</label>
+    </span>
+    <span class="p-float-label mb-4">
+      <input id="float-password" type="password" pInputText [(ngModel)]="password" [style]="{width: '22.5vw'}">
+      <label for="password">Password</label>
+      <label for="float-input">Password</label>
+    </span>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" label="Login" styleClass="p-button-text" (click)="onLogin()"></p-button>
+  </ng-template>
+</p-dialog>
